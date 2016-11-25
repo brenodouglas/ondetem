@@ -7,6 +7,8 @@ defmodule OndeTem.Repo.Migrations.Product do
       add :price, :float
       add :comment, :text
       add :locale_id, references(:locale)
+
+      timestamps
     end
   end
 

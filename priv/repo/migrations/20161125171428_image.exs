@@ -8,6 +8,8 @@ defmodule OndeTem.Repo.Migrations.Image do
       add :title, :string, null: true
       add :description, :text, null: true
       add :product_id, references(:product)
+
+      timestamps
     end
   end
 

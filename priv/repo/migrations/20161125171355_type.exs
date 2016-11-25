@@ -5,6 +5,8 @@ defmodule OndeTem.Repo.Migrations.Type do
     create table(:type) do
       add :description, :string
       add :code, :string, unique: true
+
+      timestamps
     end
   end
 

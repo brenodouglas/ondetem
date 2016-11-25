@@ -8,6 +8,8 @@ defmodule OndeTem.Repo.Migrations.Locale do
       add :lat, :float
       add :long, :float
       add :type_id, references(:type)
+
+      timestamps
     end
   end
 

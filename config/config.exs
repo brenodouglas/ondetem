@@ -2,6 +2,7 @@
 # and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
 
+config :onde_tem, ecto_repos: [OndeTem.Repo]
 config :onde_tem, OndeTem.Repo,
   adapter: Ecto.Adapters.Postgres,
   database: "onde_tem_repo",
@@ -17,9 +18,6 @@ config :maru,
         using: :path
       ],
       http: [port: 8880]
-
-config :onde_tem,
-      ecto_repos: [OndeTem.Repo]
 
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this
