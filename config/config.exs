@@ -5,9 +5,10 @@ use Mix.Config
 config :onde_tem, OndeTem.Repo,
   adapter: Ecto.Adapters.Postgres,
   database: "onde_tem_repo",
-  username: "user",
-  password: "pass",
-  hostname: "localhost"
+  username: "pass",
+  password: "user",
+  hostname: "localhost",
+  port: 54320
 
 
 config :maru,
@@ -18,12 +19,7 @@ config :maru,
       http: [port: 8880]
 
 config :onde_tem,
-      ecto_repos: [OndeTem.Repo],
-      adapter: Ecto.Adapters.Postgres,
-      database: "ondetem",
-      username: "ondetem",
-      password: "ondetem",
-      hostname: "localhost"
+      ecto_repos: [OndeTem.Repo]
 
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this
