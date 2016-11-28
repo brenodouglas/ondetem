@@ -24,6 +24,22 @@ defmodule OndeTem.Router.Type do
         conn
         |> json(Repo.one(query))
       end
+
+      desc "Create a type of locale"
+      params do
+        optional :description, type: String
+        optional :code, type: String
+      end
+      post "/" do
+        changeset = TypeModel.changeset(%TypeModel{}, params)
+        case Repo.insert(changeset) do
+          {:ok, model} ->
+            conn |> json(model)
+          {:error, changeset} ->
+            conn |> json(%{error: changeset})
+        end
+        conn |> json(%{description: params[:description]})
+      end
     end
   end
 

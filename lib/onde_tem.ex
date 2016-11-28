@@ -2,12 +2,17 @@ defmodule OndeTem.API do
   use Maru.Router
   use Application
 
-  mount OndeTem.Router.Homepage
-  mount OndeTem.Router.Type
-
   before do
     plug Plug.Static, at: "/static", from: "static/"
+    plug Plug.Logger
+    plug Plug.Parsers,
+      pass: ["*/*"],
+      json_decoder: Poison,
+      parsers: [:json, :multipart]
   end
+
+  # mount OndeTem.Router.Homepage
+  mount OndeTem.Router.Type
 
   rescue_from :all do
     conn
