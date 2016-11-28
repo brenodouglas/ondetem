@@ -3,6 +3,11 @@ defmodule OndeTem.API do
   use Application
 
   mount OndeTem.Router.Homepage
+  mount OndeTem.Router.Type
+
+  before do
+    plug Plug.Static, at: "/static", from: "static/"
+  end
 
   rescue_from :all do
     conn

@@ -1,4 +1,4 @@
-defmodule OndeTem.Router.Homepage do
+defmodule OndeTem.Router.Image do
   use Maru.Router
 
   version "v1" do
