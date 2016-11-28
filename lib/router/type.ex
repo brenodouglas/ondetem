@@ -27,8 +27,8 @@ defmodule OndeTem.Router.Type do
 
       desc "Create a type of locale"
       params do
-        optional :description, type: String
-        optional :code, type: String
+        requires :description, type: String
+        requires :code, type: String
       end
       post "/" do
         changeset = TypeModel.changeset(%TypeModel{}, params)
