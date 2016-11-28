@@ -1,5 +1,6 @@
 defmodule OndeTem.API do
   use Maru.Router
+  use Application
 
   mount OndeTem.Router.Homepage
 
@@ -8,10 +9,6 @@ defmodule OndeTem.API do
       |> put_status(500)
       |> text("Sever Error")
   end
-end
-
-defmodule OndeTem.App do
-  use Application
 
   def start(_type, _args) do
     import Supervisor.Spec
