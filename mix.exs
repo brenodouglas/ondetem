@@ -30,6 +30,7 @@ defmodule OndeTem.Mixfile do
   defp deps do
     [{:maru, "~> 0.10"},
     {:postgrex, ">= 0.0.0"},
-    {:ecto, "~> 2.0.0"}]
+    {:ecto, "~> 2.0.0"},
+    {:comeonin, "~> 1.0"}]
   end
 end

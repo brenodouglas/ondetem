@@ -13,7 +13,8 @@ defmodule OndeTem.API do
 
   # mount OndeTem.Router.Homepage
   mount OndeTem.Router.Type
-
+  mount OndeTem.Router.Auth
+  
   rescue_from :all do
     conn
       |> put_status(500)

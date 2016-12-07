@@ -45,7 +45,7 @@ defmodule OndeTem.Router.Type do
         case Repo.insert(changeset) do
           {:ok, model} ->
             conn |> json(%{id: model.id, description: model.description, code: model.code, inserted_at: model.inserted_at})
-          {:error, changeset} ->
+          {:error} ->
             conn |> json(%{error: true})
         end
       end
@@ -59,7 +59,7 @@ defmodule OndeTem.Router.Type do
         case Repo.delete type do
           {:ok, model} ->
             conn |> json(%{id: model.id, description: model.description, code: model.code, inserted_at: model.inserted_at})
-          {:error, changeset} ->
+          {:error} ->
               conn |> json(%{error: true})
         end
       end
@@ -75,7 +75,7 @@ defmodule OndeTem.Router.Type do
         case Repo.update type do
           {:ok, model} ->
             conn |> json(%{id: model.id, description: model.description, code: model.code, inserted_at: model.inserted_at})
-          {:error, changeset} ->
+          {:error} ->
               conn |> json(%{error: true})
         end
       end
