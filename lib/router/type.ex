@@ -6,8 +6,11 @@ defmodule OndeTem.Router.Type do
   alias OndeTem.Repo
 
   version "v1" do
-    namespace "type" do
 
+    pipeline do
+     plug Joken.Plug, verify: &OndeTem.API.verify_function/0
+    end
+    namespace "type" do
       desc "Retrieve a type of locales"
       get "/" do
         query = from t in TypeModel, select: %{id: t.id,
