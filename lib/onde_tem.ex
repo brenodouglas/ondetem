@@ -3,8 +3,6 @@ defmodule OndeTem.API do
   use Maru.Router
   use Application
 
-  @skip_token_verification %{joken_skip: true}
-
   before do
     plug Plug.Static, at: "/static", from: "static/"
     plug Plug.Logger
@@ -21,12 +19,6 @@ defmodule OndeTem.API do
     conn
       |> put_status(500)
       |> text("Sever Error")
-  end
-
-  def verify_function do
-    %Joken.Token{}
-    |> Joken.with_sub(1234567890)
-    |> Joken.with_signer(Joken.hs256("da39a3ee5e6b4b0d3255bfef95601890afd80709"))
   end
 
   def start(_type, _args) do

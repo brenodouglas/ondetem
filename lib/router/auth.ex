@@ -1,9 +1,9 @@
 require IEx;
- defmodule OndeTem.Router.Auth do
+defmodule OndeTem.Router.Auth do
   use Maru.Router
 
   alias OndeTem.Models.User
-  alias OndeTem.Repo
+  # alias OndeTem.Repo
 
   desc "Authentication of user"
   params do
@@ -11,26 +11,14 @@ require IEx;
   end
   post "/auth" do
     # user = Repo.get_by(User, email: String.downcase params[:email])
-    token = %{user_id: 1}
-            |> Joken.token
-            |> Joken.with_sub(1234567890)
-            |> Joken.with_signer(Joken.hs256("da39a3ee5e6b4b0d3255bfef95601890afd80709"))
-            |> Joken.sign
-            |> Joken.get_compact
+    new_conn = Guardian.Plug.api_sign_in(conn, %User{id: 1, email: params[:email]})
+    jwt = Guardian.Plug.current_token(new_conn)
 
-    conn |> json(%{token: token})
-    # case user do
-    #   nil ->
-    #     conn |> json(%{error: true})
-    #   model ->
-    #     token = %{user_id: 1}
-    #             |> Joken.token
-    #             |> Joken.with_signer("mysecrete_key")
-    #             |> Joken.with_sub(1234567890)
-    #             |> Joken.sign
-    #             |> Joken.get_compact
-    #
-    #     conn |> json(%{token: token})
-    # end
+    case Guardian.Plug.claims(new_conn) do
+      {:ok, claims} ->
+          new_conn |> json(%{token: jwt, expiration: Map.get(claims, "exp")})
+      {:error, _} =
+          new_conn |> put_status(500) |> json(%{error: true})
+    end
   end
 end

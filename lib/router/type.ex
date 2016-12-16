@@ -8,7 +8,8 @@ defmodule OndeTem.Router.Type do
   version "v1" do
 
     pipeline do
-     plug Joken.Plug, verify: &OndeTem.API.verify_function/0
+      plug Guardian.Plug.VerifyHeader, realm: "Bearer"
+      plug Guardian.Plug.LoadResource
     end
     namespace "type" do
       desc "Retrieve a type of locales"

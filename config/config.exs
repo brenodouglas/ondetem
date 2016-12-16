@@ -19,6 +19,14 @@ config :maru,
       ],
       http: [port: 8880]
 
+config :guardian, Guardian,
+  allowed_algos: ["HS512"], # optional
+  verify_module: Guardian.JWT,  # optional
+  issuer: "OndeTEM",
+  ttl: { 30, :days },
+  verify_issuer: true, # optional
+  secret_key: "AL0H8OvP5NuboUoj8Pb3zpBcDyEJN907wMxrCy7H2062i3IRPF5NQ546jIJU3uQX5KN2QB_Cq6R_SUqyVZSNpIfC",
+  serializer: OndeTem.Serializer
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this
 # file won't be loaded nor affect the parent project. For this reason,
