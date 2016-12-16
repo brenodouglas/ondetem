@@ -10,6 +10,9 @@ defmodule OndeTem.API do
       pass: ["*/*"],
       json_decoder: Poison,
       parsers: [:json, :multipart]
+
+    plug Guardian.Plug.VerifyHeader, realm: "Bearer"
+    plug Guardian.Plug.LoadResource
   end
 
   mount OndeTem.Router.Type
@@ -19,6 +22,12 @@ defmodule OndeTem.API do
     conn
       |> put_status(500)
       |> text("Sever Error")
+  end
+
+  def unauthenticated(conn, _params) do
+    conn
+    |> put_status(401)
+    |> json(%{message: "Authentication required"})
   end
 
   def start(_type, _args) do
