@@ -32,6 +32,7 @@ defmodule OndeTem.Mixfile do
     {:postgrex, ">= 0.0.0"},
     {:ecto, "~> 2.0.0"},
     {:comeonin, "~> 1.0"},
-    {:guardian, "~> 0.13.0"}]
+    {:guardian, "~> 0.13.0"},
+    {:cors_plug, "~> 1.2"},]
   end
 end

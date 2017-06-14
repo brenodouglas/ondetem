@@ -61,7 +61,7 @@ defmodule OndeTem.Router.Type do
           {:ok, model} ->
             conn |> json(%{id: model.id, description: model.description, code: model.code, inserted_at: model.inserted_at})
           {:error} ->
-              conn |> json(%{error: true})
+            conn |> json(%{error: true})
         end
       end
 

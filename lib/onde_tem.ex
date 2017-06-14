@@ -15,6 +15,7 @@ defmodule OndeTem.API do
     plug Guardian.Plug.LoadResource
   end
 
+  plug CORSPlug
 
   mount OndeTem.Router.Auth
 
