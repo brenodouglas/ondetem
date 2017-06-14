@@ -15,8 +15,14 @@ defmodule OndeTem.API do
     plug Guardian.Plug.LoadResource
   end
 
-  mount OndeTem.Router.Type
+
   mount OndeTem.Router.Auth
+
+  pipeline do
+    plug Guardian.Plug.EnsureAuthenticated, handler: OndeTem.API
+  end
+  mount OndeTem.Router.Type
+  mount OndeTem.Router.Product
 
   rescue_from :all do
     conn

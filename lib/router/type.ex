@@ -8,10 +8,6 @@ defmodule OndeTem.Router.Type do
 
 
   version "v1" do
-
-    pipeline do
-      plug Guardian.Plug.EnsureAuthenticated, handler: OndeTem.API
-    end
     namespace "type" do
       desc "Retrieve a type of locales"
       get "/" do

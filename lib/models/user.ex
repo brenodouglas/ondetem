@@ -10,17 +10,17 @@ defmodule OndeTem.Models.User do
     timestamps
   end
 
-  @required_fields ~w(username email password)
+  @required_fields ~w(username email)
   @optional_fields ~w()
 
-  def changset(type, params \\ :empty) do
+  def changeset(type, params \\ :empty) do
     type
       |> cast(params, @required_fields, @optional_fields)
       |> unique_constraint(:username)
       |> unique_constraint(:email)
       |> validate_format(:email, ~r/@/)
       |> validate_length(:password, min: 5)
-      |> put_change(:passowrd, params["plain_password"] |> hashed_password)
+      |> put_change(:password, params[:plain_password] |> hashed_password)
   end
 
   defp hashed_password(password) do

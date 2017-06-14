@@ -6,12 +6,11 @@ config :onde_tem, ecto_repos: [OndeTem.Repo]
 config :onde_tem, OndeTem.Repo,
   adapter: Ecto.Adapters.Postgres,
   database: "onde_tem_repo",
-  username: "pass",
-  password: "user",
+  username: "user",
+  password: "pass",
   hostname: "localhost",
   port: 54320
-
-
+  
 config :maru,
       OndeTem.API,
       versioning: [
